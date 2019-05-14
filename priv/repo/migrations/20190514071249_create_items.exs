@@ -4,6 +4,7 @@ defmodule Til.Repo.Migrations.CreateItems do
   def change do
     create table(:items) do
       add :content, :string
+      add :tags, {:array, :string}
 
       timestamps()
     end

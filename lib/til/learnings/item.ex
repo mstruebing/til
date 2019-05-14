@@ -5,6 +5,7 @@ defmodule Til.Learnings.Item do
 
   schema "items" do
     field :content, :string
+    field :tags, {:array, :string}
 
     timestamps()
   end
@@ -12,7 +13,7 @@ defmodule Til.Learnings.Item do
   @doc false
   def changeset(item, attrs) do
     item
-    |> cast(attrs, [:content])
-    |> validate_required([:content])
+    |> cast(attrs, [:content, :tags])
+    |> validate_required([:content, :tags])
   end
 end

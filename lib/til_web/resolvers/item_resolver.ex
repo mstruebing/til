@@ -3,6 +3,7 @@ defmodule TilWeb.ItemResolver do
 
   def all_items(_root, _args, _info) do
     items = Learnings.list_items
+    IO.inspect(items)
     {:ok, items}
   end
 end

@@ -13,5 +13,5 @@
 alias Til.Learnings.Item
 alias Til.Repo
 
-%Item{content: "VIM"} |> Repo.insert!
-%Item{content: "TMUX"} |> Repo.insert!
+%Item{content: "VIM", tags: ["linux", "programming"]} |> Repo.insert!
+%Item{content: "TMUX", tags: ["linux", "shell"]} |> Repo.insert!
