@@ -34,6 +34,8 @@ defmodule TilWeb do
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
 
+      use Phoenix.HTML
+
       import TilWeb.Router.Helpers
       import TilWeb.ErrorHelpers
       import TilWeb.Gettext

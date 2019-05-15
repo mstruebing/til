@@ -8,6 +8,7 @@ defmodule TilWeb.Endpoint do
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
+    from: :til,
     at: "/", from: :til, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
