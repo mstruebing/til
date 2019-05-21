@@ -11,7 +11,12 @@
 # and so on) as they will fail if something goes wrong.
 
 alias Til.Learnings.Item
+alias Til.Accounts.User
 alias Til.Repo
 
-%Item{content: "VIM", tags: ["linux", "programming"]} |> Repo.insert!
-%Item{content: "TMUX", tags: ["linux", "shell"]} |> Repo.insert!
+
+user = %User{email: "max@max.de", password_hash: "1234"} |> Repo.insert!
+user = %User{email: "alex@alex.de", password_hash: "1234"} |> Repo.insert!
+
+%Item{content: "VIM", tags: ["linux", "programming"], user_id: 1} |> Repo.insert!
+%Item{content: "TMUX", tags: ["linux", "shell"], user_id: 1} |> Repo.insert!
