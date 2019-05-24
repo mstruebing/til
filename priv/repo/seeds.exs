@@ -10,7 +10,7 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-alias Til.Learnings.Item
+alias Til.Learnings.Learning
 alias Til.Accounts.User
 alias Til.Repo
 
@@ -18,5 +18,5 @@ alias Til.Repo
 user = %User{email: "max@max.de", password_hash: "1234"} |> Repo.insert!
 user = %User{email: "alex@alex.de", password_hash: "1234"} |> Repo.insert!
 
-%Item{content: "VIM", tags: ["linux", "programming"], user_id: 1} |> Repo.insert!
-%Item{content: "TMUX", tags: ["linux", "shell"], user_id: 1} |> Repo.insert!
+%Learning{content: "VIM", tags: ["linux", "programming"], user_id: 1} |> Repo.insert!
+%Learning{content: "TMUX", tags: ["linux", "shell"], user_id: 1} |> Repo.insert!

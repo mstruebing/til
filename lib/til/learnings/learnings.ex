@@ -6,99 +6,99 @@ defmodule Til.Learnings do
   import Ecto.Query, warn: false
   alias Til.Repo
 
-  alias Til.Learnings.Item
+  alias Til.Learnings.Learning
 
   @doc """
-  Returns the list of items.
+  Returns the list of learnings.
 
   ## Examples
 
-      iex> list_items()
-      [%Item{}, ...]
+      iex> list_learnings()
+      [%Learning{}, ...]
 
   """
-  def list_items do
-    Repo.all(Item)
+  def list_learnings do
+    Repo.all(Learning)
   end
 
   @doc """
-  Gets a single item.
+  Gets a single learning.
 
-  Raises `Ecto.NoResultsError` if the Item does not exist.
+  Raises `Ecto.NoResultsError` if the Learning does not exist.
 
   ## Examples
 
-      iex> get_item!(123)
-      %Item{}
+      iex> get_learning!(123)
+      %Learning{}
 
-      iex> get_item!(456)
+      iex> get_learning!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_item!(id), do: Repo.get!(Item, id)
+  def get_learning!(id), do: Repo.get!(Learning, id)
 
   @doc """
-  Creates a item.
+  Creates a learning.
 
   ## Examples
 
-      iex> create_item(%{field: value})
-      {:ok, %Item{}}
+      iex> create_learning(%{field: value})
+      {:ok, %Learning{}}
 
-      iex> create_item(%{field: bad_value})
+      iex> create_learning(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_item(attrs \\ %{}) do
-    %Item{}
-    |> Item.changeset(attrs)
+  def create_learning(attrs \\ %{}) do
+    %Learning{}
+    |> Learning.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Updates a item.
+  Updates a learning.
 
   ## Examples
 
-      iex> update_item(item, %{field: new_value})
-      {:ok, %Item{}}
+      iex> update_learning(learning, %{field: new_value})
+      {:ok, %Learning{}}
 
-      iex> update_item(item, %{field: bad_value})
+      iex> update_learning(learning, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_item(%Item{} = item, attrs) do
-    item
-    |> Item.changeset(attrs)
+  def update_learning(%Learning{} = learning, attrs) do
+    learning
+    |> Learning.changeset(attrs)
     |> Repo.update()
   end
 
   @doc """
-  Deletes a Item.
+  Deletes a Learning.
 
   ## Examples
 
-      iex> delete_item(item)
-      {:ok, %Item{}}
+      iex> delete_learning(learning)
+      {:ok, %Learning{}}
 
-      iex> delete_item(item)
+      iex> delete_learning(learning)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_item(%Item{} = item) do
-    Repo.delete(item)
+  def delete_learning(%Learning{} = learning) do
+    Repo.delete(learning)
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for tracking item changes.
+  Returns an `%Ecto.Changeset{}` for tracking learning changes.
 
   ## Examples
 
-      iex> change_item(item)
-      %Ecto.Changeset{source: %Item{}}
+      iex> change_learning(learning)
+      %Ecto.Changeset{source: %Learning{}}
 
   """
-  def change_item(%Item{} = item) do
-    Item.changeset(item, %{})
+  def change_learning(%Learning{} = learning) do
+    Learning.changeset(learning, %{})
   end
 end

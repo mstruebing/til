@@ -2,14 +2,14 @@ defmodule Til.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Til.Learnings.Item
+  alias Til.Learnings.Learning
 
 
   schema "users" do
     field :email, :string
     field :password_hash, :string
 
-    has_many :items, Item
+    has_many :learnings, Learning
 
     timestamps()
   end
