@@ -21,6 +21,22 @@ defmodule Til.Learnings do
     Repo.all(Learning)
   end
 
+  def list_learnings(%{user_id: user_id}) do
+    query = from Learning, 
+      where: [user_id: ^user_id], 
+      select: [:id, :user_id, :content, :tags, :updated_at, :inserted_at]
+
+    Repo.all(query)
+  end
+
+  def list_learnings(%{tag: tag}) do
+    query = from l in Learning,
+      where: ^tag in l.tags,
+      select: [:id, :user_id, :content, :tags, :updated_at, :inserted_at]
+
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single learning.
 

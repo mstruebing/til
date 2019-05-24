@@ -24,13 +24,18 @@ defmodule TilWeb.Schema do
       resolve &LearningResolver.all_learnings/3
     end
 
-    field :user_learnings, non_null(list_of(non_null(:learning))) do
-      arg :user_id, non_null(:id)
-      resolve &LearningResolver.user_learnings/3
-    end
-
     field :all_users, non_null(list_of(non_null(:user))) do
       resolve &UserResolver.all_users/3
+    end
+
+    field :learnigns_by_tag, non_null(list_of(non_null(:learning))) do
+      arg :tag, non_null(:string)
+      resolve &LearningResolver.learnings_by_tag/3
+    end
+
+    field :learnings_by_user, non_null(list_of(non_null(:learning))) do
+      arg :user_id, non_null(:id)
+      resolve &LearningResolver.learnings_by_user/3
     end
   end
 end
