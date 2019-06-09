@@ -2,7 +2,7 @@ defmodule TilWeb.LearningResolver do
   alias Til.Learnings
 
   def all_learnings(_root, _args, _info) do
-    learnings = Learnings.list_learnings
+    learnings = Learnings.list_learnings()
     {:ok, learnings}
   end
 
@@ -15,5 +15,14 @@ defmodule TilWeb.LearningResolver do
     {int_user_id, _} = Integer.parse(user_id)
     learnings = Learnings.list_learnings(%{user_id: int_user_id})
     {:ok, learnings}
+  end
+
+  def create(_root, args, %{context: %{current_user: current_user}}) do
+    newArgs = %{user_id: current_user.id, content: args.content, tags: ["linux"]}
+    Learnings.create_learning(newArgs)
+  end
+
+  def create(_root, _args, _info) do
+    {:error, "Not Authorized"}
   end
 end

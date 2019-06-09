@@ -15,8 +15,8 @@ alias Til.Accounts.User
 alias Til.Repo
 
 
-user = %User{email: "max@max.de", password_hash: "1234"} |> Repo.insert!
-user = %User{email: "alex@alex.de", password_hash: "1234"} |> Repo.insert!
+user = %User{email: "max@max.de", handle: "maex", password_hash: "1234"} |> Repo.insert!
+user = %User{email: "alex@alex.de", handle: "aelx", password_hash: "1234"} |> Repo.insert!
 
 %Learning{content: "VIM", tags: ["linux", "programming"], user_id: 1} |> Repo.insert!
 %Learning{content: "TMUX", tags: ["linux", "shell"], user_id: 1} |> Repo.insert!

@@ -43,7 +43,10 @@ defmodule Til.Mixfile do
       {:absinthe_ecto, "~> 0.1"},
       {:absinthe_plug, "~> 1.4"},
       {:plug_cowboy, "~> 1.0"},
-      {:jason, "~> 1.1.2"}
+      {:jason, "~> 1.1.2"},
+      {:guardian, "~> 1.2"},
+      {:comeonin, "~> 5.1"},
+      {:bcrypt_elixir, "~> 2.0"}
     ]
   end
 
