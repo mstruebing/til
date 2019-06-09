@@ -20,6 +20,15 @@ defmodule TilWeb.UserResolver do
     end
   end
 
+  def logout(_root, _args, %{context: %{current_user: current_user}}) do
+    Til.Accounts.revoke_token(current_user, nil)
+    {:ok, current_user}
+  end
+
+  def logout(_args, _info) do
+    {:error, "Please log in first!"}
+  end
+
   defp populate_learnings(users) do
     learnings = Learnings.list_learnings()
     Enum.map(users, fn user -> %{user | learnings: filter_by_user_id(user.id, learnings)} end)

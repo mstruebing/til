@@ -4,7 +4,7 @@ server:
 reset:
 	mix ecto.reset
 
-clean-server: reset db server
+clean-server: reset server
 
 start-db:
 	docker-compose up

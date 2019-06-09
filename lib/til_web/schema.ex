@@ -46,13 +46,6 @@ defmodule TilWeb.Schema do
       # rename to by_user or smth else
       resolve(&LearningResolver.learnings_by_user/3)
     end
-
-    field :login, :session do
-      arg(:email, non_null(:string))
-      arg(:password, non_null(:string))
-
-      resolve(&UserResolver.login/3)
-    end
   end
 
   mutation do
@@ -62,6 +55,17 @@ defmodule TilWeb.Schema do
       arg(:password, non_null(:string))
 
       resolve(&UserResolver.create/3)
+    end
+
+    field :login, :session do
+      arg(:email, non_null(:string))
+      arg(:password, non_null(:string))
+
+      resolve(&UserResolver.login/3)
+    end
+
+    field :logout, :user do
+      resolve(&UserResolver.logout/3)
     end
 
     field :create_learning, :learning do
