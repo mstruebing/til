@@ -3,7 +3,7 @@ defmodule TilWeb.UserResolver do
   alias Til.Learnings
   alias Til.AuthHelper
 
-  def all_users(_root, _args, _info) do
+  def list_all(_root, _args, _info) do
     users = populate_learnings(Accounts.list_users())
     {:ok, users}
   end
@@ -25,7 +25,7 @@ defmodule TilWeb.UserResolver do
     {:ok, current_user}
   end
 
-  def logout(_args, _info) do
+  def logout(_root, _args, _info) do
     {:error, "Please log in first!"}
   end
 

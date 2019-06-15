@@ -26,24 +26,25 @@ defmodule TilWeb.Schema do
 
   query do
     field :learnings, non_null(list_of(non_null(:learning))) do
-      # rename to all / list_all or smth else
-      resolve(&LearningResolver.all_learnings/3)
+      resolve(&LearningResolver.list_all/3)
     end
 
     field :users, non_null(list_of(non_null(:user))) do
-      # rename to all / list_all or smth else
-      resolve(&UserResolver.all_users/3)
+      resolve(&UserResolver.list_all/3)
     end
 
-    field :learnigns_by_tag, non_null(list_of(non_null(:learning))) do
+    field :learnings_by_tag, non_null(list_of(non_null(:learning))) do
       arg(:tag, non_null(:string))
-      # rename to by_tag or smth else
       resolve(&LearningResolver.learnings_by_tag/3)
     end
 
-    field :learnings_by_user, non_null(list_of(non_null(:learning))) do
+    field :learnings_by_user_id, non_null(list_of(non_null(:learning))) do
       arg(:user_id, non_null(:id))
-      # rename to by_user or smth else
+      resolve(&LearningResolver.learnings_by_user_id/3)
+    end
+
+    field :learnings_by_user, non_null(list_of(non_null(:learning))) do
+      arg(:handle, non_null(:string))
       resolve(&LearningResolver.learnings_by_user/3)
     end
   end

@@ -11,6 +11,6 @@ defmodule Til.Repo.Migrations.CreateUsers do
       timestamps()
     end
 
-    create(unique_index(:users, [:email]))
+    create(unique_index(:users, [:email, :handle]))
   end
 end

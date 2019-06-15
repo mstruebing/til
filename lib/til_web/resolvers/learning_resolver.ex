@@ -1,7 +1,8 @@
 defmodule TilWeb.LearningResolver do
+  alias Til.Accounts
   alias Til.Learnings
 
-  def all_learnings(_root, _args, _info) do
+  def list_all(_root, _args, _info) do
     learnings = Learnings.list_learnings()
     {:ok, learnings}
   end
@@ -11,9 +12,14 @@ defmodule TilWeb.LearningResolver do
     {:ok, learnings}
   end
 
-  def learnings_by_user(_root, %{user_id: user_id}, _info) do
+  def learnings_by_user_id(_root, %{user_id: user_id}, _info) do
     {int_user_id, _} = Integer.parse(user_id)
     learnings = Learnings.list_learnings(%{user_id: int_user_id})
+    {:ok, learnings}
+  end
+
+  def learnings_by_user(_root, %{handle: handle}, _info) do
+    learnings = Learnings.list_learnings(%{handle: handle})
     {:ok, learnings}
   end
 

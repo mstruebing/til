@@ -7,6 +7,7 @@ defmodule Til.Learnings.Learning do
   schema "learnings" do
     field(:content, :string)
     field(:tags, {:array, :string})
+
     belongs_to(:user, User, foreign_key: :user_id)
 
     timestamps()
@@ -14,9 +15,6 @@ defmodule Til.Learnings.Learning do
 
   @doc false
   def changeset(learning, attrs) do
-    IO.inspect(learning)
-    IO.inspect(attrs)
-
     learning
     |> cast(attrs, [:content, :tags, :user_id])
     |> validate_required([:content, :tags, :user_id])
