@@ -23,19 +23,23 @@ defmodule Til.Learnings do
   end
 
   def list_learnings(%{user_id: user_id}) do
-    Repo.get_by(Learning, user_id: user_id)
+    query =
+      from(l in Learning,
+        where: [user_id: ^user_id]
+      )
+
+    Repo.all(query)
   end
 
   def list_learnings(%{handle: handle}) do
     user = Accounts.get_user_by_handle(handle)
-    Repo.get_by(Learning, user_id: user.id)
+    list_learnings(%{user_id: user.id})
   end
 
   def list_learnings(%{tag: tag}) do
     query =
       from(l in Learning,
-        where: ^tag in l.tags,
-        select: [:id, :user_id, :content, :tags, :updated_at, :inserted_at]
+        where: ^tag in l.tags
       )
 
     Repo.all(query)

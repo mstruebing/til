@@ -71,6 +71,7 @@ defmodule TilWeb.Schema do
 
     field :create_learning, :learning do
       arg(:content, non_null(:string))
+      arg(:private, :boolean)
 
       resolve(&LearningResolver.create/3)
     end

@@ -6,6 +6,7 @@ defmodule Til.Learnings.Learning do
 
   schema "learnings" do
     field(:content, :string)
+    field(:private, :boolean)
     field(:tags, {:array, :string})
 
     belongs_to(:user, User, foreign_key: :user_id)
@@ -16,7 +17,7 @@ defmodule Til.Learnings.Learning do
   @doc false
   def changeset(learning, attrs) do
     learning
-    |> cast(attrs, [:content, :tags, :user_id])
+    |> cast(attrs, [:content, :tags, :user_id, :private])
     |> validate_required([:content, :tags, :user_id])
   end
 end
