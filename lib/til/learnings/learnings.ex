@@ -5,6 +5,7 @@ defmodule Til.Learnings do
 
   import Ecto.Query, warn: false
   alias Til.Repo
+  alias Til.Accounts
 
   alias Til.Learnings.Learning
 
@@ -22,13 +23,12 @@ defmodule Til.Learnings do
   end
 
   def list_learnings(%{user_id: user_id}) do
-    query =
-      from(Learning,
-        where: [user_id: ^user_id],
-        select: [:id, :user_id, :content, :tags, :updated_at, :inserted_at]
-      )
+    Repo.get_by(Learning, user_id: user_id)
+  end
 
-    Repo.all(query)
+  def list_learnings(%{handle: handle}) do
+    user = Accounts.get_user_by_handle(handle)
+    Repo.get_by(Learning, user_id: user.id)
   end
 
   def list_learnings(%{tag: tag}) do
