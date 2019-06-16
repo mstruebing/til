@@ -1,4 +1,8 @@
 defmodule Til.Accounts.User do
+  @moduledoc """
+  This module defines the user dataset.
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 

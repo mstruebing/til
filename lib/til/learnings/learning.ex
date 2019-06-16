@@ -1,4 +1,8 @@
 defmodule Til.Learnings.Learning do
+  @moduledoc """
+  This module defines the learning dataset.
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 

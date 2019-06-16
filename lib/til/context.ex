@@ -1,11 +1,15 @@
 defmodule Til.Context do
+  @moduledoc """
+  This module is a Plug which adds the current logged in user to the context.
+  """
+
   @behaviour Plug
 
   import Plug.Conn
   import Ecto.Query, only: [where: 2]
 
-  alias Til.Repo
   alias Til.Accounts.User
+  alias Til.Repo
 
   def init(opts), do: opts
 

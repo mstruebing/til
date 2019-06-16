@@ -1,4 +1,8 @@
 defmodule Til.Application do
+  @moduledoc """
+  This is the Application module
+  """
+
   use Application
 
   # See https://hexdocs.pm/elixir/Application.html

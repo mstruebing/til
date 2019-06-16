@@ -1,4 +1,8 @@
 defmodule Til.Guardian do
+  @moduledoc """
+  This module defines functions for usage with JWT-Tokens.
+  """
+
   use Guardian, otp_app: :til
   alias Til.Accounts
 

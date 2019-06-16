@@ -1,7 +1,11 @@
 defmodule TilWeb.UserResolver do
+  @moduledoc """
+  This module defines the resolvers for users.
+  """
+
   alias Til.Accounts
-  alias Til.Learnings
   alias Til.AuthHelper
+  alias Til.Learnings
 
   def list_all(_root, _args, _info) do
     users = populate_learnings(Accounts.list_users())
