@@ -66,8 +66,18 @@ defmodule Til.LearningsTest do
   describe "learnings" do
     alias Til.Learnings.Learning
 
-    @valid_attrs %{content: "some content", created_at: "2010-04-17 14:00:00.000000Z", tags: [], updated_at: "2010-04-17 14:00:00.000000Z"}
-    @update_attrs %{content: "some updated content", created_at: "2011-05-18 15:01:01.000000Z", tags: [], updated_at: "2011-05-18 15:01:01.000000Z"}
+    @valid_attrs %{
+      content: "some content",
+      created_at: "2010-04-17 14:00:00.000000Z",
+      tags: [],
+      updated_at: "2010-04-17 14:00:00.000000Z"
+    }
+    @update_attrs %{
+      content: "some updated content",
+      created_at: "2011-05-18 15:01:01.000000Z",
+      tags: [],
+      updated_at: "2011-05-18 15:01:01.000000Z"
+    }
     @invalid_attrs %{content: nil, created_at: nil, tags: nil, updated_at: nil}
 
     def learning_fixture(attrs \\ %{}) do
@@ -92,9 +102,14 @@ defmodule Til.LearningsTest do
     test "create_learning/1 with valid data creates a learning" do
       assert {:ok, %Learning{} = learning} = Learnings.create_learning(@valid_attrs)
       assert learning.content == "some content"
-      assert learning.created_at == DateTime.from_naive!(~N[2010-04-17 14:00:00.000000Z], "Etc/UTC")
+
+      assert learning.created_at ==
+               DateTime.from_naive!(~N[2010-04-17 14:00:00.000000Z], "Etc/UTC")
+
       assert learning.tags == []
-      assert learning.updated_at == DateTime.from_naive!(~N[2010-04-17 14:00:00.000000Z], "Etc/UTC")
+
+      assert learning.updated_at ==
+               DateTime.from_naive!(~N[2010-04-17 14:00:00.000000Z], "Etc/UTC")
     end
 
     test "create_learning/1 with invalid data returns error changeset" do
@@ -106,9 +121,14 @@ defmodule Til.LearningsTest do
       assert {:ok, learning} = Learnings.update_learning(learning, @update_attrs)
       assert %Learning{} = learning
       assert learning.content == "some updated content"
-      assert learning.created_at == DateTime.from_naive!(~N[2011-05-18 15:01:01.000000Z], "Etc/UTC")
+
+      assert learning.created_at ==
+               DateTime.from_naive!(~N[2011-05-18 15:01:01.000000Z], "Etc/UTC")
+
       assert learning.tags == []
-      assert learning.updated_at == DateTime.from_naive!(~N[2011-05-18 15:01:01.000000Z], "Etc/UTC")
+
+      assert learning.updated_at ==
+               DateTime.from_naive!(~N[2011-05-18 15:01:01.000000Z], "Etc/UTC")
     end
 
     test "update_learning/2 with invalid data returns error changeset" do
@@ -133,7 +153,11 @@ defmodule Til.LearningsTest do
     alias Til.Learnings.Learning
 
     @valid_attrs %{content: "some content", created_at: "2010-04-17 14:00:00.000000Z", tags: []}
-    @update_attrs %{content: "some updated content", created_at: "2011-05-18 15:01:01.000000Z", tags: []}
+    @update_attrs %{
+      content: "some updated content",
+      created_at: "2011-05-18 15:01:01.000000Z",
+      tags: []
+    }
     @invalid_attrs %{content: nil, created_at: nil, tags: nil}
 
     def learning_fixture(attrs \\ %{}) do
@@ -158,7 +182,10 @@ defmodule Til.LearningsTest do
     test "create_learning/1 with valid data creates a learning" do
       assert {:ok, %Learning{} = learning} = Learnings.create_learning(@valid_attrs)
       assert learning.content == "some content"
-      assert learning.created_at == DateTime.from_naive!(~N[2010-04-17 14:00:00.000000Z], "Etc/UTC")
+
+      assert learning.created_at ==
+               DateTime.from_naive!(~N[2010-04-17 14:00:00.000000Z], "Etc/UTC")
+
       assert learning.tags == []
     end
 
@@ -171,7 +198,10 @@ defmodule Til.LearningsTest do
       assert {:ok, learning} = Learnings.update_learning(learning, @update_attrs)
       assert %Learning{} = learning
       assert learning.content == "some updated content"
-      assert learning.created_at == DateTime.from_naive!(~N[2011-05-18 15:01:01.000000Z], "Etc/UTC")
+
+      assert learning.created_at ==
+               DateTime.from_naive!(~N[2011-05-18 15:01:01.000000Z], "Etc/UTC")
+
       assert learning.tags == []
     end
 
