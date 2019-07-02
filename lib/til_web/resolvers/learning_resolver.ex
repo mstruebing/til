@@ -26,6 +26,11 @@ defmodule TilWeb.LearningResolver do
     {:ok, filter_private_learnings(learnings, info)}
   end
 
+  def learning_count(_root, _args, _info) do
+    learnings = Learnings.list_learnings()
+    {:ok, Enum.count(learnings)}
+  end
+
   def create(_root, args, %{context: %{current_user: current_user}}) do
     learning_args = %{
       user_id: current_user.id,
