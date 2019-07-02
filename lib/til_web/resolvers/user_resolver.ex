@@ -13,8 +13,8 @@ defmodule TilWeb.UserResolver do
   end
 
   def user_count(_root, _args, _info) do
-    users = Enum.count(Accounts.list_users())
-    {:ok, users}
+    count = Accounts.count_users()
+    {:ok, count}
   end
 
   def create(_root, args, _info) do

@@ -21,6 +21,10 @@ defmodule Til.Learnings do
     Repo.all(Learning)
   end
 
+  def count_learnings do
+    Repo.one(from(l in Learning, select: count(l.id)))
+  end
+
   def list_learnings(%{user_id: user_id}) do
     query =
       from(l in Learning,

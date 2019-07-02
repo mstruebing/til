@@ -51,9 +51,6 @@ defmodule Til.Mixfile do
       {:guardian, "~> 1.2"},
       {:comeonin, "~> 5.1"},
       {:bcrypt_elixir, "~> 2.0"},
-
-      # dev test
-      {:pre_commit, "~> 0.3.4", only: :dev},
       {:phoenix_live_reload, "~> 1.1", only: :dev},
       {:credo, "~> 1.1", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.6", only: [:dev, :test], runtime: false},

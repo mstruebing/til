@@ -7,9 +7,7 @@ use Mix.Config
 
 # General application configuration
 config :til,
-  ecto_repos: [Til.Repo],
-  commands: ["quality"],
-  verbose: true
+  ecto_repos: [Til.Repo]
 
 # Configures the endpoint
 config :til, TilWeb.Endpoint,

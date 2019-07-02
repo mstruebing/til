@@ -27,8 +27,8 @@ defmodule TilWeb.LearningResolver do
   end
 
   def learning_count(_root, _args, _info) do
-    learnings = Learnings.list_learnings()
-    {:ok, Enum.count(learnings)}
+    count = Learnings.count_learnings()
+    {:ok, count}
   end
 
   def create(_root, args, %{context: %{current_user: current_user}}) do
