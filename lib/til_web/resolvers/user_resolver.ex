@@ -12,6 +12,11 @@ defmodule TilWeb.UserResolver do
     {:ok, users}
   end
 
+  def user_count(_root, _args, _info) do
+    users = Enum.count(Accounts.list_users())
+    {:ok, users}
+  end
+
   def create(_root, args, _info) do
     Accounts.create_user(args)
   end
