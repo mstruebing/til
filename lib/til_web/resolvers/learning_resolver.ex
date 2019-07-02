@@ -1,4 +1,8 @@
 defmodule TilWeb.LearningResolver do
+  @moduledoc """
+  This module defines the resolvers for learnings.
+  """
+
   alias Til.Learnings
 
   def list_all(_root, _args, info) do
@@ -23,14 +27,14 @@ defmodule TilWeb.LearningResolver do
   end
 
   def create(_root, args, %{context: %{current_user: current_user}}) do
-    newArgs = %{
+    learning_args = %{
       user_id: current_user.id,
       content: args.content,
       tags: ["linux"],
       private: Map.get(args, :private, false)
     }
 
-    Learnings.create_learning(newArgs)
+    Learnings.create_learning(learning_args)
   end
 
   def create(_root, _args, _info) do
@@ -38,16 +42,13 @@ defmodule TilWeb.LearningResolver do
   end
 
   defp filter_private_learnings(learnings, info) do
-    cond do
-      Map.has_key?(info.context, :current_user) ->
-        user_id = info.context.current_user.id
-
-        # Remove all private learnings which are not from this user
-        Enum.filter(learnings, fn learning -> !learning.private || learning.user_id == user_id end)
-
-      true ->
-        # Remove all private learnings
-        Enum.filter(learnings, fn learning -> !learning.private end)
+    if Map.has_key?(info.context, :current_user) do
+      user_id = info.context.current_user.id
+      # Remove all private learnings which are not from this user
+      Enum.filter(learnings, fn learning -> !learning.private || learning.user_id == user_id end)
+    else
+      # Remove all private learnings
+      Enum.filter(learnings, fn learning -> !learning.private end)
     end
   end
 end

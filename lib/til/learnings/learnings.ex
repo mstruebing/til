@@ -4,10 +4,9 @@ defmodule Til.Learnings do
   """
 
   import Ecto.Query, warn: false
-  alias Til.Repo
   alias Til.Accounts
-
   alias Til.Learnings.Learning
+  alias Til.Repo
 
   @doc """
   Returns the list of learnings.

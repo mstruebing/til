@@ -7,15 +7,16 @@ use Mix.Config
 
 # General application configuration
 config :til,
-  ecto_repos: [Til.Repo]
+  ecto_repos: [Til.Repo],
+  commands: ["quality"],
+  verbose: true
 
 # Configures the endpoint
 config :til, TilWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "UqvL0AVCdWbtrqHY65U802C7XihdG1Pwq6kQNx4ZK3nqRVutP7Yym4sFpa4Dk+fi",
   render_errors: [view: TilWeb.ErrorView, accepts: ~w(json)],
-  pubsub: [name: Til.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Til.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -24,7 +25,7 @@ config :logger, :console,
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"
 
 # configures Guardian
 config :til, Til.Guardian,

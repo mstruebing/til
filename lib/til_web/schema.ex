@@ -1,4 +1,8 @@
 defmodule TilWeb.Schema do
+  @moduledoc """
+  This module defines the used GraphQL schema.
+  """
+
   use Absinthe.Schema
 
   alias TilWeb.{LearningResolver, UserResolver}

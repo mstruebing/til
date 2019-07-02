@@ -6,7 +6,7 @@ defmodule Til.AccountsTest do
   describe "users" do
     alias Til.Accounts.User
 
-    @valid_attrs %{email: "some email", password_hash: "some password_hash"}
+    @valid_attrs %{email: "some email", password: "some password_hash", handle: "master"}
     @update_attrs %{email: "some updated email", password_hash: "some updated password_hash"}
     @invalid_attrs %{email: nil, password_hash: nil}
 
