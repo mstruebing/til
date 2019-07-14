@@ -41,6 +41,7 @@ defmodule TilWeb.Endpoint do
     signing_salt: "jrmW3+5Q"
   )
 
+  plug(CORSPlug)
   plug(TilWeb.Router)
 
   @doc """

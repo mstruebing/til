@@ -4,25 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/elm make src/Main.elm --output=../priv/static/js/index.html",
-    "watch": "watch './node_modules/.bin/elm make src/Main.elm --output=../priv/static/js/index.html' src",
-    "deploy-old": "parcel build ./js/app.js --out-dir ../priv/static/js",
-    "watch-old": "parcel watch ./js/app.js --out-dir ../priv/static/js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "cd elm && ../node_modules/.bin/elm-app build",
+    "watch": "cd elm && ../node_modules/.bin/elm-app start",
+    "test": "cd elm && ../node_modules/.bin/elm-app test"
   },
   "keywords": [],
   "author": "Max Strübing <mxstrbng@gmail.com> (https://github.com/mstruebing)",
   "license": "MIT",
-  "dependencies": {
-    "phoenix": "^1.4.6",
-    "phoenix_html": "^2.13.2"
-  },
   "devDependencies": {
     "@dillonkearns/elm-graphql": "^3.6.2",
-    "elm": "^0.19.0-no-deps",
-    "elm-hot": "^1.1.0",
-    "node-elm-compiler": "^5.0.3",
-    "parcel-bundler": "^1.12.3",
-    "watch": "^1.0.2"
+    "create-elm-app": "^3.0.8"
   }
 }
