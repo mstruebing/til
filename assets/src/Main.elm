@@ -1,39 +1,66 @@
-module Main exposing (Model, Msg(..), main, update, view)
+module Main exposing (main)
 
 import Browser
-import Html exposing (..)
-import Html.Attributes exposing (class)
-import Html.Events exposing (onClick)
-
-
-main =
-    Browser.sandbox { init = 0, update = update, view = view }
-
-
-type Msg
-    = Increment
-    | Decrement
+import Html exposing (Html)
+import Learnings
 
 
 type alias Model =
-    Int
+    { learnings : Learnings.Model }
 
 
-update : Msg -> Model -> Model
+type Msg
+    = LearningsMsg Learnings.Msg
+
+
+init : () -> ( Model, Cmd Msg )
+init _ =
+    let
+        ( learningsModel, learningsCmd ) =
+            Learnings.init
+    in
+    ( { learnings = learningsModel }, Cmd.map LearningsMsg <| learningsCmd )
+
+
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Increment ->
-            model + 1
+        LearningsMsg subMsg ->
+            let
+                ( learningsModel, learnignsCmd ) =
+                    Learnings.update subMsg model.learnings
+            in
+            ( { model | learnings = learningsModel }, Cmd.map LearningsMsg <| learnignsCmd )
 
-        Decrement ->
-            model - 1
+
+main : Program () Model Msg
+main =
+    Browser.element
+        { init = init
+        , view = view
+        , update = update
+        , subscriptions = subscriptions
+        }
+
+
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    Sub.none
 
 
 view : Model -> Html Msg
 view model =
-    div [ class "elm-container" ]
-        [ button [ onClick Decrement, class "button" ] [ text "-" ]
-        , div [] [ text (String.fromInt model) ]
-        , button [ onClick Increment, class "button" ] [ text "+" ]
-        , div [] [ text "And here is some more stuff from Elm! Yo!" ]
+    Html.div []
+        [ viewLearningCount model
+        , viewLearnings model
         ]
+
+
+viewLearnings : Model -> Html Msg
+viewLearnings { learnings } =
+    Html.map LearningsMsg <| Learnings.viewLearnings learnings
+
+
+viewLearningCount : Model -> Html Msg
+viewLearningCount { learnings } =
+    Html.map LearningsMsg <| Learnings.viewLearningCount learnings
