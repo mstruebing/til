@@ -63,6 +63,6 @@ config :til, Til.Repo,
   pool_size: 10
 
 config :cors_plug,
-  origin: ["http://localhost:3000"],
+  origin: ["http://localhost:3000", "http://local:3000"],
   max_age: 86400,
   methods: ["OPTIONS", "POST"]
