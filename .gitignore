@@ -22,3 +22,4 @@ priv/static/js
 
 # Sobelow
 .sobelow
+.elixir_ls

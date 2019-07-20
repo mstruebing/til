@@ -34,6 +34,7 @@ defmodule TilWeb.LearningResolver do
   def create(_root, args, %{context: %{current_user: current_user}}) do
     learning_args = %{
       user_id: current_user.id,
+      title: args.title,
       content: args.content,
       tags: ["linux"],
       private: Map.get(args, :private, false)

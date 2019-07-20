@@ -3,6 +3,7 @@ defmodule Til.Repo.Migrations.CreateLearnings do
 
   def change do
     create table(:learnings) do
+      add(:title, :string)
       add(:content, :string)
       add(:private, :boolean)
       add(:tags, {:array, :string})

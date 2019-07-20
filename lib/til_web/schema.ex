@@ -11,6 +11,7 @@ defmodule TilWeb.Schema do
 
   object :learning do
     field(:id, non_null(:id))
+    field(:title, non_null(:string))
     field(:content, non_null(:string))
     field(:tags, non_null(list_of(non_null(:string))))
     field(:inserted_at, :naive_datetime)
@@ -82,6 +83,7 @@ defmodule TilWeb.Schema do
     end
 
     field :create_learning, :learning do
+      arg(:title, non_null(:string))
       arg(:content, non_null(:string))
       arg(:private, :boolean)
 
