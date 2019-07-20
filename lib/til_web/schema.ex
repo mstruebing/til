@@ -86,6 +86,7 @@ defmodule TilWeb.Schema do
       arg(:title, non_null(:string))
       arg(:content, non_null(:string))
       arg(:private, :boolean)
+      arg(:tags, non_null(list_of(non_null(:string))))
 
       resolve(&LearningResolver.create/3)
     end

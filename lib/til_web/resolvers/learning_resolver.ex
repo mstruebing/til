@@ -36,7 +36,7 @@ defmodule TilWeb.LearningResolver do
       user_id: current_user.id,
       title: args.title,
       content: args.content,
-      tags: ["linux"],
+      tags: args.tags,
       private: Map.get(args, :private, false)
     }
 

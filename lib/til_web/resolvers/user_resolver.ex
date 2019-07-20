@@ -30,7 +30,7 @@ defmodule TilWeb.UserResolver do
   end
 
   def logout(_root, _args, %{context: %{current_user: current_user}}) do
-      Til.Accounts.revoke_token(current_user, nil)
+    Til.Accounts.revoke_token(current_user, nil)
     {:ok, current_user}
   end
 
