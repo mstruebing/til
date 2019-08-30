@@ -8,7 +8,10 @@ defmodule TilWeb.UserResolver do
   alias Til.Learnings
 
   def list_all(_root, _args, _info) do
-    users = populate_learnings(Accounts.list_users())
+    users =
+      Accounts.list_users()
+      |> populate_learnings
+
     {:ok, users}
   end
 
@@ -40,10 +43,13 @@ defmodule TilWeb.UserResolver do
 
   defp populate_learnings(users) do
     learnings = Learnings.list_learnings()
-    Enum.map(users, fn user -> %{user | learnings: filter_by_user_id(user.id, learnings)} end)
+
+    users
+    |> Enum.map(fn user -> %{user | learnings: filter_by_user_id(user.id, learnings)} end)
   end
 
   defp filter_by_user_id(user_id, learnings) do
-    Enum.filter(learnings, fn learning -> learning.user_id == user_id end)
+    learnings
+    |> Enum.filter(fn learning -> learning.user_id == user_id end)
   end
 end

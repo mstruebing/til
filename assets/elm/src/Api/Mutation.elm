@@ -24,7 +24,10 @@ type alias CreateLearningOptionalArguments =
 
 
 type alias CreateLearningRequiredArguments =
-    { content : String }
+    { content : String
+    , tags : List String
+    , title : String
+    }
 
 
 createLearning : (CreateLearningOptionalArguments -> CreateLearningOptionalArguments) -> CreateLearningRequiredArguments -> SelectionSet decodesTo Api.Object.Learning -> SelectionSet (Maybe decodesTo) RootMutation
@@ -37,7 +40,7 @@ createLearning fillInOptionals requiredArgs object_ =
             [ Argument.optional "private" filledInOptionals.private Encode.bool ]
                 |> List.filterMap identity
     in
-    Object.selectionForCompositeField "createLearning" (optionalArgs ++ [ Argument.required "content" requiredArgs.content Encode.string ]) object_ (identity >> Decode.nullable)
+    Object.selectionForCompositeField "createLearning" (optionalArgs ++ [ Argument.required "content" requiredArgs.content Encode.string, Argument.required "tags" requiredArgs.tags (Encode.string |> Encode.list), Argument.required "title" requiredArgs.title Encode.string ]) object_ (identity >> Decode.nullable)
 
 
 type alias CreateUserRequiredArguments =

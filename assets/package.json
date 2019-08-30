@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "cd elm && ../node_modules/.bin/elm-app build",
-    "watch": "cd elm && ../node_modules/.bin/elm-app start",
-    "test": "cd elm && ../node_modules/.bin/elm-app test"
+    "build": "npm run generate && cd elm && ../node_modules/.bin/elm-app build",
+    "watch": "npm run generate && cd elm && ../node_modules/.bin/elm-app start",
+    "test": "cd elm && ../node_modules/.bin/elm-app test",
+    "generate": "cd elm && ../node_modules/.bin/elm-graphql http://localhost:4000/graphl --base Api"
   },
   "keywords": [],
   "author": "Max Strübing <mxstrbng@gmail.com> (https://github.com/mstruebing)",

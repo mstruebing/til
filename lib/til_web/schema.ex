@@ -11,11 +11,13 @@ defmodule TilWeb.Schema do
 
   object :learning do
     field(:id, non_null(:id))
+    field(:author, non_null(:string))
     field(:title, non_null(:string))
     field(:content, non_null(:string))
     field(:tags, non_null(list_of(non_null(:string))))
     field(:inserted_at, :naive_datetime)
     field(:updated_at, :naive_datetime)
+    field(:user_id, non_null(:string))
   end
 
   object :user do

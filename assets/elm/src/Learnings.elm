@@ -24,7 +24,6 @@ import Graphql.Http exposing (queryRequest, send)
 import Graphql.Operation exposing (RootQuery)
 import Graphql.SelectionSet as SelectionSet exposing (SelectionSet)
 import Html exposing (Html)
-import Html.Events exposing (onClick)
 import Shared exposing (graphqlServerUrl)
 
 
@@ -35,7 +34,8 @@ type alias Model =
 
 
 type alias Learning =
-    { content : String
+    { title : String
+    , content : String
     , tags : List String
     }
 
@@ -71,7 +71,8 @@ learningsQuery =
 
 learningSelection : SelectionSet Learning Api.Object.Learning
 learningSelection =
-    SelectionSet.map2 Learning
+    SelectionSet.map3 Learning
+        Learning.title
         Learning.content
         Learning.tags
 
@@ -123,8 +124,11 @@ viewLearnings { learnings } =
 
 viewLearning : Learning -> List (Html Msg)
 viewLearning learning =
-    [ Html.dt [ onClick <| GetLearningCount ] [ Html.text <| learning.content ]
-    , Html.dd [] (List.map Html.text learning.tags)
+    [ Html.div []
+        [ Html.h1 [] [ Html.text learning.title ]
+        , Html.div [] [ Html.text learning.content ]
+        , Html.sub [] <| [ Html.text "tags: " ] ++ List.map (\tag -> Html.text <| tag ++ ", ") learning.tags
+        ]
     ]
 
 
