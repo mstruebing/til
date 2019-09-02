@@ -7,7 +7,7 @@ import Graphql.Http exposing (mutationRequest, send)
 import Graphql.Operation exposing (RootMutation)
 import Graphql.SelectionSet as SelectionSet exposing (SelectionSet)
 import Html exposing (Html)
-import Html.Attributes exposing (placeholder)
+import Html.Attributes exposing (placeholder, type_)
 import Html.Events exposing (onClick, onInput, onSubmit)
 import Shared exposing (graphqlServerUrl)
 
@@ -91,10 +91,22 @@ loginSelection =
         Session.token
 
 
-loginForm : Html Msg
-loginForm =
-    Html.form [ onSubmit Login ]
-        [ Html.input [ onInput UpdateUsername, placeholder "email" ] []
-        , Html.input [ onInput UpdatePassword, placeholder "password" ] []
-        , Html.button [ onClick Login ] [ Html.text "Login" ]
+loginForm : Model -> Html Msg
+loginForm model =
+    if model.token == "" then
+        Html.form [ onSubmit Login ]
+            [ Html.input [ onInput UpdateUsername, placeholder "email" ] []
+            , Html.input [ onInput UpdatePassword, type_ "password", placeholder "password" ] []
+            , Html.button [ onClick Login ] [ Html.text "Login" ]
+            ]
+
+    else
+        loginInformation model
+
+
+loginInformation : Model -> Html Msg
+loginInformation model =
+    Html.div []
+        [ Html.p [] [ Html.text <| "logged in as: " ++ model.email ]
+        , Html.p [] [ Html.text <| "your token: " ++ model.token ]
         ]

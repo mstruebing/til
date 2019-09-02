@@ -45,6 +45,10 @@ defmodule Til.Accounts do
     Repo.get_by(User, handle: handle)
   end
 
+  def get_user_by_email(email) do
+    Repo.get_by(User, email: email)
+  end
+
   @doc """
   Creates a user.
 

@@ -15,6 +15,12 @@ defmodule TilWeb.UserResolver do
     {:ok, users}
   end
 
+  def get_user_by_email(_root, %{email: email}, _info) do
+    user = Accounts.get_user_by_email(email)
+    learnings = Learnings.list_learnings(%{user_id: user.id})
+    {:ok, %{user | learnings: filter_by_user_id(user.id, learnings)}}
+  end
+
   def user_count(_root, _args, _info) do
     count = Accounts.count_users()
     {:ok, count}
@@ -28,7 +34,7 @@ defmodule TilWeb.UserResolver do
     with {:ok, user} <- AuthHelper.login_with_email_pass(email, password),
          {:ok, jwt, _} <- Til.Guardian.encode_and_sign(user),
          {:ok, _} <- Til.Accounts.store_token(user, jwt) do
-      {:ok, %{token: jwt}}
+      {:ok, %{token: jwt, user: user}}
     end
   end
 

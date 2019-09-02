@@ -2,7 +2,7 @@
 -- https://github.com/dillonkearns/elm-graphql
 
 
-module Api.Query exposing (LearningsByTagRequiredArguments, LearningsByUserIdRequiredArguments, LearningsByUserRequiredArguments, learningCount, learnings, learningsByTag, learningsByUser, learningsByUserId, userCount, users)
+module Api.Query exposing (GetUserByEmailRequiredArguments, LearningsByTagRequiredArguments, LearningsByUserIdRequiredArguments, LearningsByUserRequiredArguments, getUserByEmail, learningCount, learnings, learningsByTag, learningsByUser, learningsByUserId, userCount, users)
 
 import Api.InputObject
 import Api.Interface
@@ -17,6 +17,15 @@ import Graphql.Operation exposing (RootMutation, RootQuery, RootSubscription)
 import Graphql.OptionalArgument exposing (OptionalArgument(..))
 import Graphql.SelectionSet exposing (SelectionSet)
 import Json.Decode as Decode exposing (Decoder)
+
+
+type alias GetUserByEmailRequiredArguments =
+    { email : String }
+
+
+getUserByEmail : GetUserByEmailRequiredArguments -> SelectionSet decodesTo Api.Object.User -> SelectionSet (Maybe decodesTo) RootQuery
+getUserByEmail requiredArgs object_ =
+    Object.selectionForCompositeField "getUserByEmail" [ Argument.required "email" requiredArgs.email Encode.string ] object_ (identity >> Decode.nullable)
 
 
 learningCount : SelectionSet Int RootQuery

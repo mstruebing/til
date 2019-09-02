@@ -29,6 +29,7 @@ defmodule TilWeb.Schema do
 
   object :session do
     field(:token, :string)
+    field(:user, :user)
   end
 
   query do
@@ -38,6 +39,11 @@ defmodule TilWeb.Schema do
 
     field :users, non_null(list_of(non_null(:user))) do
       resolve(&UserResolver.list_all/3)
+    end
+
+    field :get_user_by_email, :user do
+      arg(:email, non_null(:string))
+      resolve(&UserResolver.get_user_by_email/3)
     end
 
     field :user_count, non_null(:integer) do

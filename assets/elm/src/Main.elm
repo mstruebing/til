@@ -87,5 +87,5 @@ viewLearningCount { learnings } =
 
 
 viewLoginForm : Model -> Html Msg
-viewLoginForm _ =
-    Html.map AuthMsg <| Auth.loginForm
+viewLoginForm { auth } =
+    Html.map AuthMsg <| Auth.loginForm auth
